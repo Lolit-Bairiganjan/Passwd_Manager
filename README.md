@@ -4,3 +4,4 @@ Name: Lolit Bairiganjan
 Profession: Student
 Student Of: DPS Ruby Park
 Studying in: Class 12th
+Solved it
