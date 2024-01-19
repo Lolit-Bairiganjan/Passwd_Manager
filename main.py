@@ -1,4 +1,3 @@
-from argon2 import PasswordHasher
 import mariadb
 mydb = mariadb.connect(host = 'localhost', user = 'root', passwd = 'lolit007', database = 'test_prep')
 mycr = mydb.cursor()
