@@ -1,6 +1,8 @@
 import mariadb
 mydb = mariadb.connect(host = 'localhost', user = 'root', passwd = 'lolit007', database = 'test_prep')
 mycr = mydb.cursor()
+
+
 ##Taking input for NEW/EXISTING USER
 begin = input(">New User?(1) or Existing User?(2):\n-----------------------------------\n>")
 
@@ -8,7 +10,7 @@ begin = input(">New User?(1) or Existing User?(2):\n----------------------------
 
 #function to take user's words for creating profile
 def new_user():
-    print("~Welcome New User~\n>This is a passwd manager app.\n>Here you can store all your passwords securely into a vault and access them whenever you need.")
+    print("\n~Welcome New User~\n>This is a passwd manager app.\n>Here you can store all your passwords securely into a vault and access them whenever you need.")
     loop = 't'
     while loop == "t":
         new_user_input = input("\nCreate username/passwd now(1) or create later(2):\n-------------------------------------------------\n>")
@@ -25,23 +27,26 @@ def passwd_input():
     loop = 't'
     while loop == 't':
         if len(password) <= 8:
-            print("Password must be atleast 8 characters long. Try again!")
+            print("\n+------------------------------------------------------+\n|Password must be atleast 8 characters long. Try again!|\n+------------------------------------------------------+")
+            new_user()
         elif password.isalnum() == False:
             print("Password must contain both letters and numbers. Try again!")
+            new_user()
         else:
             print("Password Accepted")
+            loop = 'f'
 
 #function to create a username/password
 def create_user_passwd():
     global uid
     global email_id
     global password
-    uid = input("Enter username: ")
-    email_id = input("Enter your email_id: ")
-    password = input("Enter a password: ")
+    uid = input("\n>Enter username:\n----------------\n>")
+    email_id = input("\n>Enter your email_id:\n---------------------\n>")
+    password = input("\n>Enter a password:\n------------------\n>")
     passwd_input()
     
-    confirm_password = input("Confirm your password.")
+    confirm_password = input("Confirm your password:\n----------------------\n")
     if password != confirm_password:
         passwd_input()
     else:
@@ -50,10 +55,13 @@ def create_user_passwd():
 
 #function finally creates a proifle after user input is done 
 def profile_created():
+    mycr.execute(f'INSERT INTO PROFILE VALUES ({uid},{email_id},{password})')
+    print("\n~Profile succesfully created~")
 
 
 #Function Calls
-new_user()
+if begin == '1':
+    new_user()
 
 
 
