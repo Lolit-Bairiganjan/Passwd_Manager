@@ -32,7 +32,7 @@ def new_user():
 def passwd_input():
     loop = 't'
     while loop == 't':
-        if len(password) <= 8:
+        if len(password) < 8:
             print("\n+------------------------------------------------------+\n|Password must be atleast 8 characters long. Try again!|\n+------------------------------------------------------+")
             new_user()
         elif password.isalnum() == False:
@@ -62,7 +62,7 @@ def create_user_passwd():
 
 #function finally creates a proifle after user input is done 
 def profile_created():
-    mycr.execute(f'INSERT INTO PROFILE VALUES ({uid},{email_id},{password})')
+    mycr.execute(f"INSERT INTO PROFILE VALUES('{uid}','{email_id}','{password}');")
     print("\n~Profile succesfully created~")
 
 
@@ -93,7 +93,6 @@ def access_all():
 
 
 try:
-    mycr.execute("SELECT * FROM LIBRARY")
     #Function Calls
     if begin == '1':
         new_user()
@@ -101,6 +100,8 @@ try:
         existing_user()
     else:
         pass
+
+    mydb.commit()
 
     
 except mariadb.Error as e:
