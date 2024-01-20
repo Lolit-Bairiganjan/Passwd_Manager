@@ -81,13 +81,21 @@ def passwd_validation():
     mycr.execute(f"SELECT UNAME,PASSWD FROM PROFILE WHERE UNAME='{uid}'")
     value = mycr.fetchone()
     try:
-        if value[1] == password:
-            existing_user()
-        else:
-            print("\n~Wrong password. Try Again!~")
-            passwd_validation()   
+        n=5
+        while n>1:
+            if value[1] == password:
+                existing_user()
+            else:
+                print("\n~Wrong password. Try Again!~")
+                n-=1
+                print(n,'tries remaining!!')
+                password = input("\nEnter Password Again!:\n----------------------\n>")
+        print("\n~Wrong Password. Logging off!~")
+    
     except TypeError:
         print("+-----------------------+\n|Enter a valid username!|\n+-----------------------+")
+        passwd_validation()
+
 
 #function for accessing the various roots associated with existing user
 def existing_user():
