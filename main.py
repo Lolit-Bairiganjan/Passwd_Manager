@@ -1,10 +1,13 @@
+##Imports
 import mariadb
+
+
+##Python Mariadb connection
 mydb = mariadb.connect(host = 'localhost', user = 'root', passwd = 'lolit007', database = 'passwd_manager')
 mycr = mydb.cursor()
 
 
 ##Constants
-global value
 profile_column = ['UNAME','EMAIL','PASSWD']
 passwds_column = ['WNAME','WLINK','WPASSWD','UNAME']
 
