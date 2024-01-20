@@ -2,3 +2,4 @@ logs/
 main.logs
 *.logs
 bin/
+test_runner.ipynb
