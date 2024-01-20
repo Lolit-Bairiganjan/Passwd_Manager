@@ -93,6 +93,9 @@ def existing_user():
     existing_user_input = input("\nAccess all username/passwords?(1), Add a website username/pasword?(2), Access particular website password?(3):\n--------------------------------------------------------------------------------------------------------------\n>")
     if existing_user_input == '1':
         access_all()
+    elif 3:
+        w_input = input("\nEnter website name:\n-------------------\n>").upper()
+        access_particular(w_input)
 
 #function to Add New Website Passwords
 def add_new():
@@ -100,8 +103,11 @@ def add_new():
 
 
 #function to access a particular password
-def access_particular():
-    value = mycr.execute(f"SELECT * FROM [TABLE] WHERE [CONDITION]")
+def access_particular(wname):
+    mycr.execute(f"SELECT * FROM PASSWDS WHERE (UNAME='{uid}'&& WNAME='{wname}'")
+    value = mycr.fetchall()
+    for i in value:
+        print(i)
 
 
 #function to access all username/password of websites and print them beautifully
