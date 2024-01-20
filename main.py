@@ -104,10 +104,11 @@ def add_new():
 
 #function to access a particular password
 def access_particular(wname):
-    mycr.execute(f"SELECT * FROM PASSWDS WHERE (UNAME='{uid}'&& WNAME='{wname}'")
+    mycr.execute(f"SELECT * FROM PASSWDS WHERE (UNAME='{uid}'&& WNAME='{wname}')")
     value = mycr.fetchall()
+    print(passwds_column)
     for i in value:
-        print(i)
+        print(list(i))
 
 
 #function to access all username/password of websites and print them beautifully
