@@ -1,5 +1,6 @@
 ##Imports
 import mariadb
+from prettytable import PrettyTable
 
 
 ##Python Mariadb connection
@@ -9,7 +10,7 @@ mycr = mydb.cursor()
 
 ##Constants
 profile_column = ['UNAME','EMAIL','PASSWD']
-passwds_column = ['WNAME','WLINK','WPASSWD','UNAME']
+passwds_column = ['WNAME','WLINK','WPASSWD','UNAME','WID']
 
 
 ##Taking input for NEW/EXISTING USER
@@ -106,10 +107,10 @@ def add_new():
 def access_particular(wname):
     mycr.execute(f"SELECT * FROM PASSWDS WHERE (UNAME='{uid}'&& WNAME='{wname}')")
     value = mycr.fetchall()
-    print(passwds_column)
+    myTable = PrettyTable(passwds_column)
     for i in value:
-        print(list(i))
-
+        myTable.add_row(i)
+    print(myTable)
 
 #function to access all username/password of websites and print them beautifully
 def access_all():  
