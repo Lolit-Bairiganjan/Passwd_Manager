@@ -124,14 +124,10 @@ def access_particular(wname):
 def access_all():  
     mycr.execute(f"SELECT * FROM PASSWDS WHERE UNAME='{uid}'")
     value = mycr.fetchall()
+    myTable = PrettyTable(passwds_column)
     for i in value:
-        for j in i:
-            title = passwds_column[i.index(j)-1]
-            multiplier = (len(title)*'-')+'-'
-            print(f"{multiplier}\n"+title+':')
-            print(j)
-        multiplier = (len(j)*'-')
-        print(multiplier)
+        myTable.add_row(i)
+    print(myTable)
 
 
 
